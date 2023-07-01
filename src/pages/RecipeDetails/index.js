@@ -7,5 +7,29 @@ export function RecipeDetails() {
     const { recipes } = useContext(RecipesContext);
 
     const recipe = recipes.find(({ _id }) => recipeId === _id);
-    return <h1>{recipe.name}</h1>;
+    return (
+        <div className="container">
+            <h1>{recipe.name}</h1>
+            <div>
+                <img style={{ width: "250px" }} src={recipe.imageURL} />
+            </div>
+            <div>
+                <p>Cuisine: {recipe.cuisineType}</p>
+                <p>
+                    Ingredients:{" "}
+                    {recipe.ingredients.map((ingredient) => (
+                        <li>{ingredient}</li>
+                    ))}
+                </p>
+                <p>
+                    Instructions:{" "}
+                    <ol>
+                        {recipe.instructions.map((instruction) => (
+                            <li>{instruction}</li>
+                        ))}
+                    </ol>
+                </p>
+            </div>
+        </div>
+    );
 }
